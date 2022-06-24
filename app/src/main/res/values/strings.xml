@@ -7,4 +7,10 @@
     <string name="altura">Altura:</string>
     <string name="cm">cm</string>
     <string name="calcular">Calcular</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="seu_imc">Seu IMC é</string>
+    <string name="textview">TextView</string>
+    <string name="seu_peso_ideal">Seu peso ideal é</string>
+    <string name="insira_sua_altura">Insira sua altura</string>
 </resources>
