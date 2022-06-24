@@ -1,10 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calculadora_IMC_AT</string>
     <string name="ndice_de_massa_corporal_imc">Índice de massa corporal (IMC)</string>
     <string name="peso">Peso:</string>
-    <string name="kg">kg</string>
     <string name="inserir_o_peso">Inserir o Peso</string>
     <string name="altura">Altura:</string>
-    <string name="cm">cm</string>
-    <string name="calcular">Calcular</string>
 </resources>
