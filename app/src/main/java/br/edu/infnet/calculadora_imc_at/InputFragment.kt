@@ -19,7 +19,15 @@ class InputFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_input, container, false)
 
+        val btCheck = view.findViewById<Button>(R.id.btCheck)
 
+        btCheck.setOnClickListener {
+
+            val navController = this.findNavController()
+
+
+            navController.navigate(R.id.action_inputFragment_to_resultFragment3)
+        }
 
         return view
     }
