@@ -6,11 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
+import android.widget.EditText
+
+import kotlin.math.roundToInt
 
 
 class InputFragment : Fragment() {
+
+    private lateinit var comunicator: Comunicator
+
+   private lateinit var peso: EditText
+   private lateinit var altura: EditText
 
 
     override fun onCreateView(
@@ -19,17 +25,63 @@ class InputFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_input, container, false)
 
+        comunicator = activity as Comunicator
+
+        altura = view.findViewById<EditText>(R.id.etHeight)
+        peso = view.findViewById<EditText>(R.id.etWeight)
+
         val btCheck = view.findViewById<Button>(R.id.btCheck)
 
+
         btCheck.setOnClickListener {
+           var imc = calculoIMC()
+           var text = validarGrau(imc)
 
-            val navController = this.findNavController()
+            comunicator.passDataCom(imc.toString(),text)
+        }
+        return view
 
+    }
 
-            navController.navigate(R.id.action_inputFragment_to_resultFragment3)
+    fun calculoIMC(): Double{
+
+        var pesoConvertido = peso.text.toString().toDouble()
+        var alturaConvertida = altura.text.toString().toDouble()
+
+        var alturaMetros = alturaConvertida/100.0
+
+        var imcSemArredondar =  (pesoConvertido/(alturaMetros * alturaMetros))
+        val imc = (imcSemArredondar * 100).roundToInt().toDouble() / 100
+
+       return imc
+
+    }
+
+    fun validarGrau(imc: Double) : String{
+
+        var text = ""
+
+        if(imc in 0.0 .. 16.0){
+            text = "Magreza grave"
+        }else if(imc in 16.1 .. 16.9){
+            text = "Magreza moderada"
+        } else if(imc in 17.0 .. 18.5){
+            text = "Magreza leve"
+        }else if(imc in 18.6 .. 25.0){
+            text = "Saudável"
+        } else if(imc in 25.1 .. 30.0){
+            text = "Sobrepeso"
+        } else if(imc in 30.1 .. 35.0){
+            text = "Obesidade Grau I"
+        } else if(imc in 35.1 .. 40.0){
+            text = "Obesidade Grau II - Severo"
+        } else if(imc > 40.0){
+            text = "Obesidade Grau III - Mórbida"
+        }else{
+            text = "Tente novamente"
         }
 
-        return view
+        return text
     }
 
 
