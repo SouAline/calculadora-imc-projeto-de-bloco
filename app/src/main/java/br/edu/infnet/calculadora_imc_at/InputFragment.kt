@@ -36,8 +36,9 @@ class InputFragment : Fragment() {
         btCheck.setOnClickListener {
            var imc = calculoIMC()
            var text = validarGrau(imc)
+            var pesoIdeal = pesoIdeal()
 
-            comunicator.passDataCom(imc.toString(),text)
+            comunicator.passDataCom(imc.toString(),text, pesoIdeal.toString())
         }
         return view
 
@@ -84,6 +85,12 @@ class InputFragment : Fragment() {
         return text
     }
 
+    fun pesoIdeal():Double{
+        var altura = altura.text.toString().toDouble()
+        var pesoIdeal = ((altura-100) * 0.85).roundToInt().toDouble()
+
+        return pesoIdeal
+    }
 
 
 }

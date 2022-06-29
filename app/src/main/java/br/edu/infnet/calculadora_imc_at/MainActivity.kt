@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity(), Comunicator{
     }
 
 
-    override fun passDataCom(imc: String, text: String) {
+    override fun passDataCom(imc: String, text: String, pesoIdeal: String) {
         val bundle = Bundle()
         bundle.putString("imc", imc)
         bundle.putString("text",text)
+        bundle.putString("pesoIdeal",pesoIdeal)
 
         val transaction = this.supportFragmentManager.beginTransaction()
         val resultFragment = ResultFragment()
