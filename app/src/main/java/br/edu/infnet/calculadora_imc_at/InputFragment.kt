@@ -86,10 +86,18 @@ class InputFragment : Fragment() {
     }
 
     fun pesoIdeal():Double{
+        var peso = peso.text.toString().toDouble()
         var altura = altura.text.toString().toDouble()
-        var pesoIdeal = ((altura-100) * 0.85).roundToInt().toDouble()
+        var resultado: Double
 
-        return pesoIdeal
+        if ((calculoIMC() > 25.00) || (calculoIMC() < 18.6)){
+            var calculo = (25 * Math.pow(altura, 2.0))/ Math.pow(10.0, 4.0)
+            resultado = calculo}
+        else{
+            resultado = peso
+        }
+
+        return "%.0f".format(resultado).toDouble()
     }
 
 
